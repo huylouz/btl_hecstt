@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <title>Chương trình Suy diễn</title>
+  <link rel="stylesheet" href="../static/style.css">
+</head>
+<body>
+  <div class="container">
+    <!-- Cột trái -->
+    <div class="left-panel">
+      <button class="upload-btn">Nhập dữ liệu</button>
+      <input type="file" id="fileInput" accept=".docx" style="display:none">
+
+      <div id="fileInfo" class="file-info" style="display:none;">
+        <p id="fileName"></p>
+        <div class="file-buttons">
+          <button id="editBtn">Sửa</button>
+          <button id="deleteBtn">Xóa</button>
+        </div>
+      </div>
+
+
+      <div class="mode-buttons">
+        <button id="btnTien" class="mode active">Tiến</button>
+        <button id="btnLui" class="mode">Lùi</button>
+      </div>
+
+      <div class="options" id="options"></div>
+      <div class="sub-options" id="subOptions"></div>
+
+      <button class="execute-btn">Thực hiện</button>
+    </div>
+
+    <!-- Cột giữa và phải -->
+    <div class="right-panel">
+      <div class="column left-col">
+        <h3>Lời Giải</h3>
+      </div>
+      <div class="divider"></div>
+      <div class="column right-col">
+        <h3>Bảng hoặc Đồ Thị</h3>
+      </div>
+    </div>
+
+    <button id="helpBtn" class="help-btn">?</button>
+  </div>
+
+  <!-- Hộp hướng dẫn -->
+  <div id="helpPopup" class="help-popup">
+    <div class="help-content">
+      <h2>Hướng dẫn sử dụng</h2>
+      <p>1. Nhấn "Nhập dữ liệu" để tải tệp .docx.</p>
+      <p>2. Chọn chế độ <b>Tiến</b> hoặc <b>Lùi</b>.</p>
+      <p>3. Chọn loại xử lý (Chỉ số, Tập hoặc Đồ thị).</p>
+      <p>4. Chọn các tùy chọn phụ (Min/Max, Stack/Queue, FPG/RPG... tùy chế độ).</p>
+      <p>5. Nhấn "Thực hiện" để chạy chương trình suy diễn.</p>
+      <button id="closeHelp">Đóng</button>
+    </div>
+  </div>
+
+  <script src="../static/script.js"></script>
+</body>
+</html>
+
+<!-- venv\Scripts\activate -->
