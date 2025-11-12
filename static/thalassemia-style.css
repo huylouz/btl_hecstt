@@ -1,0 +1,98 @@
+body {
+      font-family: "Segoe UI", sans-serif;
+      background: linear-gradient(135deg, #e3f2fd, #e1f5fe);
+      margin: 0;
+      padding: 0;
+      color: #333;
+    }
+
+    h1 {
+      text-align: center;
+      color: #0d47a1;
+      margin-top: 20px;
+    }
+
+    .container {
+      max-width: 800px;
+      background: #fff;
+      margin: 30px auto;
+      border-radius: 16px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      padding: 30px 40px;
+    }
+
+    .section {
+      margin-bottom: 25px;
+    }
+
+    .section h2 {
+      color: #1976d2;
+      border-bottom: 2px solid #64b5f6;
+      padding-bottom: 5px;
+    }
+
+    .input-check{
+        width: 10%;
+        align-items: center;
+        display: flex;
+        margin-bottom: 0;
+    }
+
+    label {
+      display: flex;
+      margin: 8px 0 4px;
+      font-weight: 600;
+      align-items: center;
+    }
+
+    select, button {
+      padding: 8px;
+      font-size: 15px;
+      border-radius: 8px;
+      border: 1px solid #90caf9;
+      margin-bottom: 10px;
+      width: 100%;
+    }
+
+    input[type="checkbox"]{
+      padding: 8px;
+      font-size: 15px;
+      border-radius: 8px;
+      border: 1px solid #90caf9;
+      margin-bottom: 0;
+      width: 10%;
+    }
+
+    button {
+      background-color: #1976d2;
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background 0.3s;
+      border: none;
+    }
+
+    button:hover {
+      background-color: #0d47a1;
+    }
+
+    .result {
+      background: #e3f2fd;
+      border-left: 6px solid #1976d2;
+      padding: 15px;
+      border-radius: 10px;
+      margin-top: 20px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+
+    .footer {
+      text-align: center;
+      font-size: 13px;
+      color: #666;
+      margin-top: 20px;
+    }

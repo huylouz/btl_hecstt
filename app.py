@@ -19,7 +19,8 @@ os.makedirs(STATIC_FOLDER, exist_ok=True)
 
 @app.route("/")
 def index():
-    return render_template("index.html")
+    # return render_template("index.html")
+    return render_template("thalassemia-diagnosis.html")
 
 
 @app.route("/process_file", methods=["POST"])

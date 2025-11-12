@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <title>Chẩn đoán Thalassemia & Dự đoán Di truyền</title>
+    <link rel="stylesheet" href="../static/thalassemia-style.css">
+</head>
+<body>
+
+  <h1>Chẩn đoán bệnh Thalassemia & Dự đoán di truyền</h1>
+
+  <div class="container">
+    <div class="grid">
+      <div class="section">
+        <h2>👨 Thông tin Cha</h2>
+        <label>Nhóm máu</label>
+        <select id="fatherBlood">
+          <option value="">-- Chọn --</option>
+          <option>A</option>
+          <option>B</option>
+          <option>AB</option>
+          <option>O</option>
+        </select>
+
+        <label>Kiểu gen Beta globin</label>
+        <select id="fatherGene">
+          <option value="">-- Chọn --</option>
+          <option>AA</option>
+          <option>Aa</option>
+          <option>aa</option>
+        </select>
+
+        <label>
+          <input type="checkbox" class="input-check"> Có người thân bị Thalassemia
+        </label>
+        <label class="check-label">
+          <input type="checkbox" class="input-check"> Có triệu chứng thiếu máu / da nhợt nhạt
+        </label>
+      </div>
+
+      <div class="section">
+        <h2>👩 Thông tin Mẹ</h2>
+        <label>Nhóm máu</label>
+        <select id="motherBlood">
+          <option value="">-- Chọn --</option>
+          <option>A</option>
+          <option>B</option>
+          <option>AB</option>
+          <option>O</option>
+        </select>
+
+        <label>Kiểu gen Beta globin</label>
+        <select id="motherGene">
+          <option value="">-- Chọn --</option>
+          <option>AA</option>
+          <option>Aa</option>
+          <option>aa</option>
+        </select>
+
+        <label>
+          <input type="checkbox" id="motherFamilyHistory"> Có người thân bị Thalassemia
+        </label>
+        <label>
+          <input type="checkbox" id="motherSymptoms"> Có triệu chứng thiếu máu / da nhợt nhạt
+        </label>
+      </div>
+    </div>
+
+    <div class="section">
+      <button onclick="diagnose()">Chẩn đoán</button>
+      <button onclick="predict()">Dự đoán di truyền</button>
+    </div>
+
+    <div id="result" class="result" style="display:none;"></div>
+  </div>
+
+  <div class="footer">
+    © 2025 Hệ chuyên gia Thalassemia – Mô phỏng suy diễn tiến & lùi
+  </div>
+
+  <script>
+    function diagnose() {
+      const fGene = document.getElementById("fatherGene").value;
+      const mGene = document.getElementById("motherGene").value;
+      const fSym = document.getElementById("fatherSymptoms").checked;
+      const mSym = document.getElementById("motherSymptoms").checked;
+
+      let result = "<h3>Kết quả chẩn đoán:</h3>";
+      let reasoning = "";
+
+      // Forward chaining logic
+      function checkGene(gen, hasSymptoms) {
+        if (gen === "aa") return "bị Thalassemia thể nặng";
+        if (gen === "Aa" && hasSymptoms) return "Thalassemia thể nhẹ";
+        if (gen === "Aa" && !hasSymptoms) return "người lành mang gen bệnh";
+        return "bình thường";
+      }
+
+      const fatherDiag = checkGene(fGene, fSym);
+      const motherDiag = checkGene(mGene, mSym);
+
+      reasoning += `Cha: ${fatherDiag}<br>`;
+      reasoning += `Mẹ: ${motherDiag}<br>`;
+
+      result += reasoning;
+      result += "<hr>";
+
+      if (fGene && mGene) {
+        result += `<b>Gợi ý:</b> Cả hai đều ${fGene === "Aa" && mGene === "Aa" ? "mang gen bệnh → nguy cơ cao con mắc bệnh!" : "có thể an toàn nhưng nên xét nghiệm thêm."}`;
+      }
+
+      const div = document.getElementById("result");
+      div.innerHTML = result;
+      div.style.display = "block";
+    }
+
+    function predict() {
+      const fGene = document.getElementById("fatherGene").value;
+      const mGene = document.getElementById("motherGene").value;
+      let result = "<h3>Dự đoán di truyền cho con:</h3>";
+
+      if (!fGene || !mGene) {
+        alert("Vui lòng chọn kiểu gen cho cả cha và mẹ!");
+        return;
+      }
+
+      let outcomes = "";
+      if (fGene === "AA" && mGene === "AA") outcomes = "100% bình thường (AA)";
+      else if ((fGene === "Aa" && mGene === "AA") || (fGene === "AA" && mGene === "Aa"))
+        outcomes = "50% bình thường (AA), 50% mang gen (Aa)";
+      else if (fGene === "Aa" && mGene === "Aa")
+        outcomes = "25% bình thường (AA), 50% mang gen (Aa), 25% bị bệnh (aa)";
+      else if ((fGene === "aa" && mGene === "Aa") || (fGene === "Aa" && mGene === "aa"))
+        outcomes = "50% mang gen (Aa), 50% bị bệnh (aa)";
+      else if (fGene === "aa" && mGene === "aa")
+        outcomes = "100% con bị bệnh (aa)";
+      else
+        outcomes = "Dữ liệu chưa đủ để xác định.";
+
+      result += `<p>${outcomes}</p>`;
+      result += "<p><b>Giải thích:</b> Kết quả dựa trên quy luật di truyền Mendel (Punnett Square).</p>";
+
+      const div = document.getElementById("result");
+      div.innerHTML = result;
+      div.style.display = "block";
+    }
+  </script>
+</body>
+</html>
