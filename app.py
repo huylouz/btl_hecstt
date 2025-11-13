@@ -16,7 +16,6 @@ os.makedirs(UPLOAD_FOLDER, exist_ok=True)
 STATIC_FOLDER = os.path.join(os.getcwd(), 'static')
 os.makedirs(STATIC_FOLDER, exist_ok=True)
 
-
 @app.route("/")
 def index():
     # return render_template("index.html")
